@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model 
+class Contact extends Model
 {
 
     protected $table = 'contact';
     public $timestamps = true;
-    protected $fillable = array('title', 'body');
+    protected $fillable = array('client_id', 'title', 'body');
 
 }

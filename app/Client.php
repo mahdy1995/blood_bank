@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model 
+class Client extends Model
 {
 
     protected $table = 'clients';
     public $timestamps = true;
     protected $fillable = array('name', 'email', 'birth_date', 'blood_type', 'mobile', 'last_don_date', 'city_id', 'password', 'is_active');
-    protected $hidden = array('password');
+    protected $hidden = array('password', 'api_token');
 
     public function report()
     {

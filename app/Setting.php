@@ -4,16 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Setting extends Model 
+class Setting extends Model
 {
 
     protected $table = 'settings';
     public $timestamps = true;
-    protected $fillable = array('mobile', 'email');
-
-    public function client()
-    {
-        return $this->belongsTo('App\Client');
-    }
+    protected $fillable = array('mobile',
+                                'email',
+                                'about_app',
+                                'facebook_url',
+                                'twitter_url',
+                                'youtube_url',
+                                'whatsapp',
+                                'instagram_url',
+                                'google_url');
 
 }

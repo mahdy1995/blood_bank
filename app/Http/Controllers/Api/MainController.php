@@ -9,13 +9,13 @@ use App\Governorate;
 use App\City;
 use App\BloodRequest;
 use App\Category;
+use App\Report;
 
 class MainController extends Controller
 {
     public function governorates()
     {
         $governorates = Governorate::all();
-
         return responseJson(1, 'Success',$governorates );
     }
 
@@ -27,14 +27,12 @@ class MainController extends Controller
                 $query->where('governorate_id',$request->governorate_id);
             }
         })->get();
-
         return responseJson(1, 'Success',$cities );
     }
 
     public function categories()
     {
         $categories = Category::all();
-
         return responseJson(1, 'Success',$categories );
     }
 
@@ -63,7 +61,28 @@ class MainController extends Controller
 
     }
 
-    public function blood_requests(Request $request)
+    public function createRequest(Request $request)
+    {
+        $validator = validator()->make($request->all(),
+            [
+                'patient_name' => 'required',
+                'patient_age' => 'required:digits',
+                'blood_type' => 'required|in:O-,O+,B-,B+,A+,A-,AB-,AB+',
+                'bag_num' => 'required:digits',
+                'hospital_name' => 'required',
+                'hospital_address' => 'required',
+                'city_id' => 'required|exists:cities,id',
+                'mobile' => 'required|unique:blood_requests|digits:11',
+            ]);
+        if ($validator->fails()) {
+            return responseJson(0, $validator->errors()->first(), $validator->errors());
+        }
+
+        $blood_request = BloodRequest::create($request->all());
+        return responseJson(1, 'تمت الاضافه بنجاح', $blood_request);
+    }
+
+    public function bloodRequests(Request $request)
     {
         $blood_requests = BloodRequest::where(function ($query) use($request){
             if($request->has('city_id'))
@@ -78,5 +97,19 @@ class MainController extends Controller
         })->paginate(8);
 
         return responseJson(1,'Success', $blood_requests);
+    }
+
+    public function reports(Request $request)
+    {
+        $validator = validator()->make($request->all(),
+            [
+                'report' => 'required'
+            ]);
+        if ($validator->fails()){
+            return responseJson(0, $validator->errors()->first(), $validator->errors());
+        }
+
+        $reports = Report::create($request->all());
+        return responseJson(1, 'Thanks for your feedback');
     }
 };

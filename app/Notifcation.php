@@ -4,15 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Notifcation extends Model 
+class Notifcation extends Model
 {
-
     protected $table = 'notifcations';
     public $timestamps = true;
-
-    public function request()
-    {
-        return $this->hasOne('App\BloodRequest');
-    }
-
+    protected $fillable = array('title', 'body', 'don_req_id');
 }

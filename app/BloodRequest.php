@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BloodRequest extends Model 
+class BloodRequest extends Model
 {
 
     protected $table = 'blood_requests';
@@ -25,9 +25,17 @@ class BloodRequest extends Model
         'longitude'
     );
 
+    public function notification()
+    {
+        return $this->hasMany('App\Notification');
+    }
     public function city()
     {
         return $this->belongsTo('App\City');
+    }
+    public function client()
+    {
+        return $this->belongsTo('App\Client');
     }
 
 }

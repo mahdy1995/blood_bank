@@ -20,16 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1' , 'namespace' => 'Api'], function(){
     Route::get('governorates', 'MainController@governorates');
     Route::get('cities', 'MainController@cities');
-    Route::get('requests', 'MainController@blood_requests');
-    Route::get('articles', 'MainController@articles');
-    Route::get('categories', 'MainController@categories');
     Route::post('register', 'AuthController@register');
     Route::post('login', 'AuthController@login');
-    Route::post('addRequest', 'AuthController@addRequest');
-    Route::post('reports', 'AuthController@reports');
-    Route::put('settings/{client_id}', 'AuthController@settings');
+
 
     Route::group(['middleware' => 'auth:api'], function (){
-
+        Route::get('blood-requests', 'MainController@bloodRequests');
+        Route::get('articles', 'MainController@articles');
+        Route::get('categories', 'MainController@categories');
+        Route::post('blood-request/create', 'MainController@createRequest');
+        Route::post('reports', 'MainController@reports');
     });
 });

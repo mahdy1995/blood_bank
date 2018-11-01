@@ -110,11 +110,11 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Posts</a></li>
-                        <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Categories</a></li>
+                        <li><a href="{{ url(route('categories.index')) }}"><i class="fa fa-circle-o"></i> Categories</a></li>
                     </ul>
                 </li>
                 <li><a href="{{url(route('governorates.index'))}}"><i class="fa fa-list"></i> <span>Governorates</span></a></li>
-                <li><a href="#"><i class="fa fa-book"></i> <span>Settings</span></a></li>
+                <li><a href="{{url(route('cities.index'))}}"><i class="fa fa-list"></i> <span>Cities</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->

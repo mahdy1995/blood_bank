@@ -1,7 +1,6 @@
 <?php
 
-namespace App;
-
+namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class BloodRequest extends Model
@@ -27,15 +26,15 @@ class BloodRequest extends Model
 
     public function notification()
     {
-        return $this->hasMany('App\Notification');
+        return $this->hasMany('App\Models\Notification');
     }
     public function city()
     {
-        return $this->belongsTo('App\City');
+        return $this->belongsTo('App\Models\City');
     }
     public function client()
     {
-        return $this->belongsTo('App\Client');
+        return $this->belongsTo('App\Models\Client');
     }
 
 }

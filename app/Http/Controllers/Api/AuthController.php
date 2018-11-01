@@ -7,12 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\RequestLog;
 
 
 Class AuthController extends Controller
 {
     public function register(Request $request)
     {
+        RequestLog::create(['content' => $request->all(),'service' => 'register']);
         $validator = validator()->make($request->all(),
             [
                 'name' => 'required',

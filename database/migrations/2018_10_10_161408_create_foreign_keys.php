@@ -35,13 +35,13 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('articles', function(Blueprint $table) {
 			$table->foreign('category_id')->references('id')->on('categories')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('cities', function(Blueprint $table) {
 			$table->foreign('governorate_id')->references('id')->on('governorates')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('city_client', function(Blueprint $table) {
 			$table->foreign('city_id')->references('id')->on('cities')

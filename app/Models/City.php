@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,15 +14,15 @@ class City extends Model
 
     public function clients()
     {
-        return $this->belongsToMany('App\Client');
+        return $this->belongsToMany('App\Models\Client');
     }
     public function donation()
     {
-        return $this->hasMany('App\BloodRequest');
+        return $this->hasMany('App\Models\BloodRequest');
     }
     public function governorate()
     {
-        return $this->belongsTo('App\Governorate');
+        return $this->belongsTo('App\Models\Governorate');
     }
 
 }

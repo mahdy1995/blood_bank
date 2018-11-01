@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class Governorate extends Model
 
     public function city()
     {
-        return $this->hasMany('App\City');
+        return $this->hasMany('App\Models\City');
     }
 
 }

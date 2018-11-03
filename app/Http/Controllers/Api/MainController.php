@@ -57,10 +57,6 @@ class MainController extends Controller
         return responseJson(1, 'Success',$articles );
     }
 
-    public function fav_articles(Request $request){
-
-    }
-
     public function createRequest(Request $request)
     {
         $validator = validator()->make($request->all(),
@@ -111,5 +107,50 @@ class MainController extends Controller
 
         $reports = Report::create($request->all());
         return responseJson(1, 'Thanks for your feedback');
+    }
+
+    public function settings()
+    {
+        return responseJson(1,'loaded',settings());
+    }
+
+    public function postFavourite(Request $request)
+    {
+        RequestLog::create(['content' => $request->all(),'service' => 'donation create']);
+        $rules = [
+            'post_id' => 'required|exists:posts,id',
+        ];
+        $validator = validator()->make($request->all(),$rules);
+        if ($validator->fails())
+        {
+            return responseJson(0,$validator->errors()->first(),$validator->errors());
+        }
+        $request->user()->favourites()->toggle($request->post_id);
+        return responseJson(1,'Success');
+    }
+
+    public function myFavourites(Request $request)
+    {
+        $posts = $request->user()->favourites()->latest()->paginate(20);
+        return responseJson(1,'Loaded...',$posts);
+    }
+
+    public function logs()
+    {
+        $requests = RequestLog::latest()->paginate(50);
+        return $requests;
+    }
+
+    public function notificationsCount(Request $request)
+    {
+        return responseJson(1,'loaded...',[
+            'notifications_count' => $request->user()->notifications()->count()
+        ]);
+    }
+    
+    public function notifications(Request $request)
+    {
+        $items = $request->user()->notifications()->latest()->paginate(20);
+        return responseJson(1, 'Loaded...', $items);
     }
 };

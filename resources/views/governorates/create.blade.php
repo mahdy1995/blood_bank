@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@inject('model', 'App\Governorate')
+@inject('model', 'App\Models\Governorate')
 @section('title')
     New Governorate
 @endsection

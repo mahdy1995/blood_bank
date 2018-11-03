@@ -10,7 +10,7 @@ class CreateNotifcationsTable extends Migration {
 		Schema::create('notifcations', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('title', 255);
-			$table->text('body');
+			$table->text('body')->nullable();
 			$table->integer('don_req_id')->unsigned();
 			$table->timestamps();
 		});

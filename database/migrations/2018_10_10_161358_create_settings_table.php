@@ -12,13 +12,13 @@ class CreateSettingsTable extends Migration {
 			$table->timestamps();
 			$table->string('mobile', 20);
 			$table->string('email');
-			$table->string('about_us');
-			$table->string('facebook');
-			$table->string('twitter');
-			$table->string('youtube');
-			$table->string('whatsapp');
-			$table->string('instagram');
-			$table->string('gmail');
+			$table->string('about_app');
+			$table->string('facebook_url');
+			$table->string('twitter_url');
+			$table->string('youtube_url');
+			$table->string('whatsapp_url');
+			$table->string('instagram_url');
+			$table->string('gmail_url');
 		});
 	}
 

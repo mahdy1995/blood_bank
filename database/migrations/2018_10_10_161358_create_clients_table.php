@@ -19,6 +19,7 @@ class CreateClientsTable extends Migration {
 			$table->date('last_don_date');
 			$table->boolean('is_active');
 			$table->string('api_token', 60)->unique()->nullable();
+			$table->string('pin_code')->nullable();
 			$table->timestamps();
 		});
 	}

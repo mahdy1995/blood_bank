@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@inject('model', 'App\Category')
+@inject('model', 'App\Models\Category')
 @section('title')
     New Category
 @endsection

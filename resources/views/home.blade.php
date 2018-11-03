@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@inject('client', 'App\Client')
-@inject('bloodrequests', 'App\BloodRequest')
+@inject('client', 'App\Models\Client')
+@inject('bloodrequests', 'App\Models\BloodRequest')
 
 @section('title')
     Blood Bank

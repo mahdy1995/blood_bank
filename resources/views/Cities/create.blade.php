@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@inject('model', 'App\City')
-@inject('model', 'App\Governorate')
+@inject('model', 'App\Models\City')
+@inject('model', 'App\Models\Governorate')
 
 @section('title')
     New City

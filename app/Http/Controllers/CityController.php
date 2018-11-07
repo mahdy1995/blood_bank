@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\City;
+use App\Models\City;
+use App\Models\Governorate;
 
 class CityController extends Controller
 {
@@ -13,7 +14,7 @@ class CityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         $records = City::paginate(20);
 
         return view('cities.index',compact('records'));
@@ -26,8 +27,8 @@ class CityController extends Controller
      */
     public function create()
     {
-
-        return view('cities.create');
+        $governorates = Governorate::pluck('name');
+        return view('cities.create')->withGovernorates($governorates);
     }
 
     /**
@@ -77,7 +78,10 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        //
+                $governorates = Governorate::pluck('name');
+
+        $model = City::findorfail($id);
+        return view('cities.edit',compact('model','governorates'));
     }
 
     /**
@@ -89,7 +93,10 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = City::findorfail($id);
+        $record->update($request->all());
+        flash()->success('Edited Successfuly');
+        return redirect(route('cities.index'));
     }
 
     /**
@@ -100,6 +107,9 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $record = City::findorfail($id);
+        $record->delete();
+        flash()->success('Deleted Successfuly');
+        return back();
     }
 }

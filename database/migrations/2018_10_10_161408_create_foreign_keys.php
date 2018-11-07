@@ -10,28 +10,28 @@ class CreateForeignKeys extends Migration {
 	{
 		Schema::table('blood_requests', function(Blueprint $table) {
 			$table->foreign('client_id')->references('id')->on('clients')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('blood_requests', function(Blueprint $table) {
 			$table->foreign('city_id')->references('id')->on('cities')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('notifcations', function(Blueprint $table) {
 			$table->foreign('don_req_id')->references('id')->on('blood_requests')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('reports', function(Blueprint $table) {
 			$table->foreign('client_id')->references('id')->on('clients')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('contact', function(Blueprint $table) {
 			$table->foreign('client_id')->references('id')->on('clients')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('articles', function(Blueprint $table) {
 			$table->foreign('category_id')->references('id')->on('categories')
@@ -45,23 +45,23 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('city_client', function(Blueprint $table) {
 			$table->foreign('city_id')->references('id')->on('cities')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('city_client', function(Blueprint $table) {
 			$table->foreign('client_id')->references('id')->on('clients')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('blood_type_client', function(Blueprint $table) {
 			$table->foreign('blood_type_id')->references('id')->on('blood_type')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('blood_type_client', function(Blueprint $table) {
 			$table->foreign('client_id')->references('id')->on('clients')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 	}
 
